@@ -485,7 +485,9 @@
       button.textContent = "Show Description";
     }
   }
-  window.onload = updatePhotoDisplay;
+  window.addEventListener('DOMContentLoaded', () => {
+  updatePhotoDisplay();
+});
   </script>
 </body>
 </html>

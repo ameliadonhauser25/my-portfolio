@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amelia Donhauser | Journalist Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      color: #333;
+      background-color: #fef6f0; /* light peach */
+    }
+    header {
+      padding: 4rem 0;
+      text-align: center;
+      background-color: #fce4ec; /* pastel pink */
+      color: #4a4a4a;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.25rem;
+      font-weight: 300;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #6a4c93; /* soft purple */
+      text-decoration: none;
+      font-weight: 400;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    #contact {
+  text-align: center;
+}
+    .section-title {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #4a4a4a;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: #b2dfdb; /* pastel teal */
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+    p, .description {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #555;
+    }
+    .clip, .photo, .video {
+      margin-bottom: 2rem;
+    }
+    footer {
+      background-color: #e0f7fa; /* pastel blue */
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #4a4a4a;
+    }
+    .description {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    h5 a {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: #333;
+    }
+    .writing-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .writing-list li {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+    }
+    .writing-list li::before {
+      content: '•';
+      color: #6a4c93;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .writing-list h5 {
+      margin: 0;
+    }
+      /* Photo Gallery Styles */
+    .photo-gallery {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .gallery-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .photo-display {
+      text-align: center;
+      flex: 1;
+      margin: 0 20px;
+    }
+    .photo-display img {
+      max-height: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .photo-info {
+      margin-top: 1rem;
+      text-align: left;
+    }
+   .photo-info h4 {
+  font-family: 'Playfair Display', serif;
+  color: #4a4a4a;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+    .nav-btn {
+      background-color: #6a4c93;
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-btn:hover {
+      background-color: #5a3c83;
+      transform: scale(1.1);
+    }
+    .nav-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .photo-counter {
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+     /* Enhanced Bio Section Styles */
+    .bio-section {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border-radius: 15px;
+      padding: 3rem;
+      margin: 2rem 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .bio-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
+      margin-top: 1rem;
+    }
+    .headshot-container {
+      flex-shrink: 0;
+      position: relative;
+    }
+    .headshot {
+      width: 280px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .headshot:hover {
+      transform: translateY(-5px);
+    }
+    .bio-text {
+      flex: 1;
+    }
+    .bio-text p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+    }
+    .bio-text p:first-child {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #4a4a4a;
+    }
+    .bio-highlight {
+      background-color: #fce4ec;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid #6a4c93;
+      margin: 1.5rem 0;
+    }
+    .bio-highlight p {
+      margin-bottom: 0;
+      font-style: italic;
+      color: #6a4c93;
+    }
+    
+    /* Video Section Enhancements */
+    .video-container {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .video-container iframe {
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      max-width: 100%;
+    }
+    .scaled-image {
+      max-width: 50%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      margin-top: 2rem;
+    }
+     /* Side-by-side video and image */
+.video-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.video-item {
+  flex: 1 1 45%;
+  max-width: 560px;
+}
+
+.video-item iframe,
+.video-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+}
+    
+    
+    /* PDF Notice Styles */
+    .pdf-notice {
+      background-color: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .pdf-notice a {
+      color: #856404;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .pdf-notice a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive adjustments for bio section */
+    @media (max-width: 768px) {
+      .bio-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+      .headshot {
+        width: 220px;
+        height: 275px;
+        margin: 0 auto;
+      }
+      .bio-section {
+        padding: 2rem 1.5rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .video-container iframe {
+        width: 100%;
+        height: 250px;
+      }
+      .multimedia-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .multimedia-item iframe,
+      .multimedia-item img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Amelia Donhauser</h1>
+   <p> <nav class="text-center mb-4">
+    <a href="#bio">About me</a>
+    <a href="#writing">Writing/Audio</a>
+    <a href="#photography">Photography</a>
+    <a href="#video">Other Multimedia</a>
+    <a href="#contact">Contact</a>
+   </p>
+  </nav>
+  </header>
+
+  <div class="container">
+    <!-- Enhanced Bio Section -->
+<section id="bio">
+  <h2 class="section-title">About Me</h2>
+  <div class="bio-content">
+    <div class="headshot-container">
+      <img src="IMG_7966.JPG" 
+           alt="Amelia Donhauser Headshot" 
+           class="headshot">
+    </div>
+    <div class="bio-text">
+      <p>Hi! I’m Amelia Donhauser, a multimedia journalist originally from New York City and currently a senior at Northwestern University’s Medill School of Journalism. I’m pursuing a double major in journalism and history, with a concentration in the Americas.</p>
+      <p>I’ve interned for CBS News, where I fact-checked speeches during the Democratic National Convention, verified footage for major broadcasts and analyzed misinformation trends on social media platforms. On campus, I write, edit and produce stories for WNUR News, the local radio news station.</p>
+      <p>I am passionnate about telling stories through writing, podcasting and photography. I’ve contributed to the podcast “Making Gay History” and pitched documentary ideas while interning for Emmy-nominated filmmaker Lisa Cortés.</p>
+      <p>Thanks for visiting — feel free to explore my writing, photography and multimedia work.</p>
+    </div>
+  </div>
+</section>
+    
+    <!-- Writing Clips -->
+    <section id="writing">
+      <h2 class="section-title">Writing and Audio Stories</h2>
+      <div class="clip">
+        <ul class="writing-list">
+          <li><h5><a href="https://www.cbsnews.com/news/fact-checking-dnc-2024-day-1-speeches-biden-hillary-clinton-democrats/" target="_blank">Fact checking DNC 2024 Day One speeches from Biden, Hillary Clinton and other Democrats (CBS News)</a></h5></li>
+          <li><h5><a href="https://www.cbsnews.com/news/new-video-trump-gunman-rally-before-shooting/" target="_blank">New video shows gunman outside Trump rally site before July shooting (CBS News)</a></h5></li>
+          <li><h5><a href="https://www.cbsnews.com/news/fact-check-dnc-2024-day-4-harris-bob-casey/" target="_blank">Fact checking DNC 2024 Day 4 speeches of Harris, Sen. Bob Casey (CBS News)</a></h5></li>
+           <li><h5><a href="https://wnurnews.org/freedom-first-concert-spoken-word-poetry-from-death-row-keith-lamar/" target="_blank">Freedom First Concert: Spoken Word Poetry From Death Row, Keith LaMar (WNUR News)</a></h5></li>
+            <li><h5><a href="https://wnurnews.org/author/ameliadonhauser/" target="_blank">Other WNUR News work</a></h5></li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography">
+      <h2 class="section-title">Photography</h2>
+      <div class="photo-gallery">
+        <div class="gallery-container">
+          <button class="nav-btn prev-btn" onclick="changePhoto(-1)">‹</button>
+          
+          <div class="photo-display">
+            <img id="current-photo" src="IMG_4259-3.JPG" class="img-fluid" alt="Sample Photo">
+            <div class="photo-info">
+              <h4 id="photo-title">Decisive Moment</h4>
+              <p id="photo-description">A candid moment captured during the Northwestern Sailing Team meeting on May 19, 2025.</p>
+            </div>
+          </div>
+          
+          <button class="nav-btn next-btn" onclick="changePhoto(1)">›</button>
+        </div>
+        <div class="photo-counter">
+          <span id="photo-counter">1 of 6</span>
+        </div>
+      </div>
+      
+
+    <!-- Video Section -->
+    <section id="video">
+      <h2 class="section-title">Videos and Other Multimedia</h2>
+     <div class="video-flex-container">
+  <div class="video-item">
+    <iframe src="https://www.youtube.com/embed/_qlumWTELgI?si=83-sr9OH4nwZFlgw" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen></iframe>
+  </div>
+  <div class="video-item">
+    <img src="july18_perimeter_full_large.jpg" alt="Investigation Documentation">
+  </div>
+</div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p>Email: <a href="mailto:ameliadonhauser1@gmail.com">ameliadonhauser1@gmail.com</a></p>
+      <p>Follow me: 
+        <a href="https://www.linkedin.com/in/amelia-donhauser" target="_blank">LinkedIn</a> | 
+        <a href="https://instagram.com/ameliadonhauser" target="_blank">Instagram</a>
+      </p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Amelia Donhauser. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Photo gallery data
+ const photos = [
+    {
+      src: "IMG_4259-3.JPG",
+      title: "A Decisive Moment",
+      description: "A candid moment captured during the Northwestern Sailing Team weekly meeting on May 5, 2025. Captain George Warfel proposes to his co-captain as part of an annual tradition."
+    },
+    {
+      src: "IMG_4755-2.jpg",
+      title: "Feature Story Series",
+      description: "Nick Chesemore plays the saxophone at a house concert on May 10, 2025, in Evanston, Ill."
+    },
+    {
+      src: "IMG_4126-2.jpg",
+      title: "Feature Story Series",
+      description: "A group of students sit outside and talk at Guzman y Gomez in downtown Evanston, Ill., on Cinco de Mayo."
+    },
+    {
+      src: "Screenshot 2025-06-02 at 10.02.19 PM.jpg",
+      title: "Sense of Place Photo",
+      description: "People gather at an intramural soccer game on April 29, 2025, at Martin Stadium in Evanston, Ill."
+    }
+  ];
+
+  let currentPhotoIndex = 0;
+
+  // Updates the current photo in the gallery
+  function changePhoto(direction) {
+    currentPhotoIndex += direction;
+
+    // Wrap around the gallery when reaching the start or end
+    if (currentPhotoIndex >= photos.length) {
+      currentPhotoIndex = 0;
+    } else if (currentPhotoIndex < 0) {
+      currentPhotoIndex = photos.length - 1;
+    }
+
+    updatePhotoDisplay();
+  }
+
+  // Updates the photo display with title, image and description
+  function updatePhotoDisplay() {
+    const photo = photos[currentPhotoIndex];
+    document.getElementById('current-photo').src = photo.src;
+    document.getElementById('photo-title').textContent = photo.title;
+    document.getElementById('photo-description').textContent = photo.description;
+    document.getElementById('photo-counter').textContent = `${currentPhotoIndex + 1} of ${photos.length}`;
+  }
+
+  // Toggles the visibility of photo descriptions
+  function toggleDescription(button) {
+    const description = button.nextElementSibling;
+    if (description.style.display === "none" || description.style.display === "") {
+      description.style.display = "block";
+      button.textContent = "Hide Description";
+    } else {
+      description.style.display = "none";
+      button.textContent = "Show Description";
+    }
+  }
+  window.onload = updatePhotoDisplay;
+  </script>
+</body>
+</html>
+
